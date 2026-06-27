@@ -71,16 +71,20 @@ engine.
 
 | Repo | What it is | Type |
 | --- | --- | --- |
+| [**guildlm**](https://github.com/guildlm/guildlm) | 🏛️ The umbrella — project hub, `Makefile`/`docker-compose` for local serving, and a runnable offline **end-to-end demo** wiring forge → anvil → crucible → brain. Start here. | 🟢 Hub |
 | [**forge**](https://github.com/guildlm/forge) | Data pipeline — discover → download → process → generate → build. Turns sources (GitHub, arXiv, …) into SFT datasets via teacher models. | 🟡 Core |
 | [**anvil**](https://github.com/guildlm/anvil) | Training infra — QLoRA SFT, DPO, LoRA merge, and quantization (GGUF/GPTQ/AWQ) for any base model. | 🟡 Core |
 | [**crucible**](https://github.com/guildlm/crucible) | Evaluation — pluggable evaluators (sandboxed `go_functional`, `llm_judge`, `safety`) with JSON/Markdown reports. | 🟡 Core |
 | [**brain**](https://github.com/guildlm/brain) | The router/orchestrator — classifies intent, routes to a specialist, hot-swaps LoRA adapters, runs multi-step pipelines. | 🟡 Core |
-| [**guild-code**](https://github.com/guildlm/guild-code) | ⚔️ The first guild: Go specialists (`go_generator`, `go_reviewer`, `go_tester`, `go_explainer`) with forge/anvil/crucible recipes. | 🔵 Guild |
+| [**guild-code**](https://github.com/guildlm/guild-code) | ⚔️ The first guild: Go specialists (`go_generator`, `go_reviewer`, `go_tester`, `go_explainer`) with forge/anvil/crucible recipes + a sample dataset. | 🔵 Guild |
+| [**guild-sql**](https://github.com/guildlm/guild-sql) | 🗄️ The second guild: SQL specialists (`sql_generator`, `sql_reviewer`, `sql_optimizer`, `sql_explainer`) — built from `guild-template`, proving guilds plug in without touching the engine. | 🔵 Guild |
 | [**guild-template**](https://github.com/guildlm/guild-template) | 📋 Boilerplate + `new_guild.sh` generator for standing up a new guild in minutes. | 🟣 Template |
 | [**guildlm.github.io**](https://github.com/guildlm/guildlm.github.io) | The landing site and public face of the project. | ⚪ Site |
 
 > **Status:** the four core tools are production-grade (pyproject packaging,
-> pytest, CI, rich docs). **guild-code** is the first complete guild spec.
+> pytest, CI, rich docs). **guild-code** and **guild-sql** are two complete
+> guild specs, and the [**guildlm**](https://github.com/guildlm/guildlm) umbrella
+> runs them together end-to-end offline.
 
 ---
 
@@ -130,9 +134,11 @@ The same loop builds every specialist:
 - **Phase 3 — anvil.** Training infra (SFT/DPO/QLoRA/merge/quantize). ✅
 - **Phase 4 — crucible.** Pluggable evaluation + sandboxes. ✅
 - **Phase 5 — brain.** Router, registry, multi-step pipelines. ✅
-- **Phase 6 — guild-code.** First guild: the Go specialists. ✅ (spec complete)
+- **Phase 6 — guild-code.** First guild: the Go specialists + sample dataset. ✅
 - **Phase 7 — guild-template.** One-command new-guild boilerplate. ✅
-- **Next — more guilds.** SQL, Rust, Legal, Medical… built from the template.
+- **Phase 8 — guild-sql.** Second guild, built from the template — composability proven. ✅
+- **Phase 9 — guildlm umbrella.** Front door + offline end-to-end demo (forge→anvil→crucible→brain). ✅
+- **Next — train real adapters** on GPU, then more guilds (Rust, Legal, Medical…).
 
 ---
 
